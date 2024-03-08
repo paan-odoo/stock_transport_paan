@@ -10,8 +10,8 @@
                 <field name="vehicle_category" type="column"  />
                 <field name="weight"/>
                 <field name="volume"/>
-                <field name="picking_ids_count"/>
-                <field name="move_line_ids_count"/>
+                <field name="transfers"/>
+                <field name="lines"/>
             </graph>
         </field>
     </record>
@@ -19,33 +19,9 @@
         <field name="name">stock.picking.batch.view.gantt</field>
         <field name="model">stock.picking.batch</field>
         <field name="arch" type="xml">
-            <gantt date_start="scheduled_date" date_stop="scheduled_date" thumbnails="{'fleet_id':'image_128'}" default_group_by="dock_id,fleet_id" decoration-info="state == 'draft'" decoration-success="state == 'done'" create="0" edit="0" delete="0" color="fleet_id" default_scale="week">  
+            <gantt date_start="create_date" date_stop="scheduled_date" thumbnails="{'fleet_id':'image_128'}" default_group_by="dock_id,fleet_id" decoration-info="state == 'draft'" decoration-success="state == 'done'" create="0" edit="0" delete="0" color="fleet_id" default_scale="week">  
                 <field name="vehicle_category" />
-                <field name="name" />
-                <field name="weight" />
-                <field name="volume" />
                 <field name="state" />
-                <field name="driver_id" />
-                <field name="driver_image"/>
-                <field name="driver_name"/>
-                <templates>
-                    <div t-name="gantt-popover" class="container-fluid">
-                        <div class="row g-0">
-                            <div class="col">
-                                <ul class="ps-1 mb-0 list-unstyled">
-                                    
-                                    <t t-if="driver_id" >
-                                        <li>
-                                            <img t-attf-src="data:image/png;base64,{{ driver_image }}" style="width:20px;height:20px;border-radius:50%;" alt="driver_image"/>
-                                            <t t-esc="driver_name"/>
-                                        </li>
-                                    </t>
-                                    <li><strong><t t-esc="name"/></strong> <t t-esc="weight"/> Kg <t t-esc="volume"/> m^3</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </templates>
             </gantt>
         </field>
     </record>
@@ -63,16 +39,16 @@
                     <field name="fleet_id" placeholder="Third Party Provider"/>
                     <field name="vehicle_category" placeholder="Semi-truck"/>
                 </group>
-                <group class="w-100">
+                <group class="w-100" invisible="not vehicle_category">
                     <label for="weight"/>
                     <div class="o_row w-100" name="weight">
                         <field name="total_weight"/>
-                        <field name="weight" widget="progressbar" invisible="not vehicle_category" class="oe_inline"/>
+                        <field name="weight" widget="progressbar" class="oe_inline"/>
                     </div>
                     <label for="volume"/>
                     <div class="o_row w-100" name="volume">
                         <field name="total_volume"/>
-                        <field name="volume" widget="progressbar" invisible="not vehicle_category" class="oe_inline"/>
+                        <field name="volume" widget="progressbar" class="oe_inline"/>
                     </div>
                 </group>
             </xpath>
