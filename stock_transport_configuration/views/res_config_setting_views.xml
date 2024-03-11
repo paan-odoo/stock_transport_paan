@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="base.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//block[@name='shipping_setting_container']//setting[@id='stock_move_email']" position="after">
-                <setting id="stock_transport" help="Add Stock Transport to add more functionality">
+                <setting id="stock_transport" help="Transport Management: organize packs in your fleet, or carriers.">
                     <field name="module_stock_transport"/>
                 </setting>
             </xpath>
