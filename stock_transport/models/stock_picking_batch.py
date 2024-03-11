@@ -5,6 +5,8 @@ class StockPickingBatch(models.Model) :
 
     dock_id = fields.Many2one('dock.dock')
     fleet_id = fields.Many2one('fleet.vehicle', "Vehicle")
+    driver_id = fields.Many2one(related="fleet_id.driver_id")
+    driver_image = fields.Binary(related="driver_id.image_1920")
     vehicle_category = fields.Many2one('fleet.vehicle.model.category')
     weight = fields.Integer(compute="_compute_weight_volume", default=0,store=True)
     volume = fields.Integer(compute = "_compute_weight_volume",default=0,store=True)

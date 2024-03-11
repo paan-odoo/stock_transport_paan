@@ -19,9 +19,12 @@
         <field name="name">stock.picking.batch.view.gantt</field>
         <field name="model">stock.picking.batch</field>
         <field name="arch" type="xml">
-            <gantt date_start="create_date" date_stop="scheduled_date" thumbnails="{'fleet_id':'image_128'}" default_group_by="dock_id,fleet_id" decoration-info="state == 'draft'" decoration-success="state == 'done'" create="0" edit="0" delete="0" color="fleet_id" default_scale="week">  
+            <gantt js_class="stock_transport_gantt" date_start="create_date" date_stop="scheduled_date" pill_label="True" thumbnails="{'fleet_id':'image_128'}" default_group_by="dock_id,fleet_id" decoration-info="state == 'draft'" decoration-success="state == 'done'"  color="fleet_id" default_scale="week">  
                 <field name="vehicle_category" />
                 <field name="state" />
+                <field name="weight" />
+                <field name="volume" />
+                <field name="driver_image"/>
             </gantt>
         </field>
     </record>
@@ -30,9 +33,9 @@
         <field name="model">stock.picking.batch</field>
         <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='scheduled_date']" position="attributes">
+            <!-- <xpath expr="//field[@name='scheduled_date']" position="attributes">
                 <attribute name="invisible">True</attribute>
-            </xpath>
+            </xpath> -->
             <xpath expr="//field[@name='scheduled_date']" position="after">
                 <group class="w-100">
                     <field name="dock_id" string="Dock"/>

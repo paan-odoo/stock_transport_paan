@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="stock_transport.StockTransportGanttRenderer.Pill" t-inherit="web_gantt.GanttRenderer.Pill">
+        <xpath expr="//div[hasclass('o_gantt_pill')]" position="inside">
+            <t t-if="pill.driver_image">
+                <img t-attf-src="data:image/png;base64,{{ pill.driver_image }}" style="width:20px;height:20px;border-radius:50%;" alt="driver_image"/>
+            </t>
+        </xpath>
+    </t>
+
+</templates>
