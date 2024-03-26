@@ -8,8 +8,8 @@
             <graph string="Batch Transfers">
                 <field name="scheduled_date" type="row" interval="day"/>
                 <field name="vehicle_category" type="column"  />
-                <field name="weight"/>
-                <field name="volume"/>
+                <field name="total_weight"/>
+                <field name="total_volume"/>
                 <field name="transfers"/>
                 <field name="lines"/>
             </graph>
